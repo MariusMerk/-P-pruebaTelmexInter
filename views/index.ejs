@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Landing</title>
+  </head>
+  <style>
+    body {
+      font-size: 40px;
+    }
+    div {
+      text-align: center;
+      width: 100%;
+    }
+    form {
+      margin-top: 15px;
+      width: 100%;
+      text-align: center;
+    }
+    input {
+      text-align: center;
+      width: 50%;
+      height: 50px;
+      border-radius: 5px;
+      margin: 5px;
+    }
+    input.h:hover {
+      border-color: greenyellow;
+    }
+  </style>
+  <body>
+    <div> Login de Usuario </div>
+    <form action="/login" method="POST">
+      <label for="userName"></label>
+      <input class="h" type="text" id="userName" name="userName" placeholder="Usuario">
+      <input type="submit" value="Entrar">
+    </form>
+  </body>
+</html>

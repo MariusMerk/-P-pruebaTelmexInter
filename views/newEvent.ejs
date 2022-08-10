@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Nuevo Evento</title>
+    <script
+      src="https://kit.fontawesome.com/08b67dbc05.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <style>
+    button {
+      border-radius: 5px;
+    }
+    button.e {
+      background-color: red;
+      color: white;
+      width: 80px;
+      text-align: center;
+      padding: 10px;
+      margin-top: 20px;
+    }
+    button.l {
+      background-color: aquamarine;
+      color: black;
+      width: 15%;
+    }
+    .mainF {
+      text-align: center;
+    }
+    input {
+      padding: 10px;
+      width: 25%;
+    }
+    header div {
+      background-color: #f97153;
+      width: 100%;
+      position: relative;
+      top: -22px;
+      color: black;
+      font-family: Verdana, Geneva, Tahoma, sans-serif;
+    }
+    body {
+      margin: 0;
+    }
+  </style>
+  <body>
+    <header>
+      <div>
+        <h1>
+          Usuario: <%= user %>
+          <form action="/logOut" method="get">
+            <button class="l" type="submit">Cerrar sesión</button>
+          </form>
+        </h1>
+      </div>
+    </header>
+
+    <main>
+      <div>
+        <form class="mainF" action="/nuevo" method="POST">
+          <label for="userName">Evento</label>
+          <input
+            type="text"
+            id="descripcion"
+            name="descripcion"
+            maxlength="100"
+          />
+          <label for="estatus">Estatus</label>
+          <input
+            type="text"
+            id="estatus"
+            name="estatus"
+            value="Iniciado"
+            readonly
+          />
+          <br />
+          <button class="e" type="submit" value="Generar">
+            Enviar <i class="fa-solid fa-envelope"></i>
+          </button>
+        </form>
+      </div>
+    </main>
+  </body>
+</html>

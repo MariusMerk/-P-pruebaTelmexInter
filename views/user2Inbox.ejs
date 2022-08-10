@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Validación de eventos</title>
+  </head>
+  <style>
+    body {
+      margin: 0;
+    }
+    main {
+      margin: 25px;
+    }
+    table {
+      font-family: arial, sans-serif;
+      border-collapse: collapse;
+      width: 100%;
+    }
+    td,
+    th {
+      border: 1px solid #dddddd;
+      text-align: center;
+      padding: 8px;
+    }
+    tr:nth-child(even) {
+      background-color: #dddddd;
+    }
+    header {
+      background-color: #f97153;
+      width: 100%;
+      position: relative;
+      top: -22px;
+      color: black;
+      font-family: Verdana, Geneva, Tahoma, sans-serif;
+    }
+    header h1 div {
+      width: 50%;
+    }
+
+    h1 div button {
+      width: 15%;
+    }
+  </style>
+  <body>
+    <header>
+      <h1>
+        Usuario: <%= user %>
+        <div>
+          <button type="" onclick="window.location.reload();">Refresh</button>
+          <form action="/logOut" method="get">
+            <button type="submit">Cerrar sesión</button>
+          </form>
+        </div>
+      </h1>
+    </header>
+    <main>
+      <div>
+          <table>
+            <tr>
+              <th>Nombre de usuario</th>
+              <th>Acción</th>
+              <th>Ver</th>
+            </tr>
+
+            <% if (user == "User2") {%>
+              <% if (mail2) {%>
+                <% for (let i = 0; i < mail2.length; i++) {%> 
+                <tr>
+                  <td><%= mail2[i].usuario %> </td>
+                  <td>Inicio evento: <%= mail2[i].descripcion %></td>
+                  <td>
+                    <button onclick="location.href = '/correo/vista/<%=mail2[i].id%>';">IR</button>
+                  </td>
+                </tr>
+                <% } %> 
+                <% } %>  
+              <% } else { %>
+                <% if (mail3) {%>
+                  <% for (let i = 0; i < mail3.length; i++) {%> 
+                  <tr>
+                    <td><%= mail3[i].usuario %> </td>
+                    <td>Inicio evento: <%= mail3[i].descripcion %></td>
+                    <td>
+                      <button onclick="location.href = '/correo/vista/admin/<%=mail3[i].id%>';">IR</button>
+                    </td>
+                  </tr>
+                  <% } %> 
+                  <% } %> 
+                <% } %>   
+
+          </table>
+      </div>
+    </main>
+  </body>
+</html>

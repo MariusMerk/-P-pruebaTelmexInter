@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="bootstrap.min.css" />
+    <title>Editar valor</title>
+  </head>
+  <body>
+    <div>Aquí la edición</div>
+
+    <% let des, i; %> 
+    <% for (i=0; i < listadoEventos.length; i++) {%> 
+        <% if(listadoEventos[i].id == elemento) { %>
+            <% est = listadoEventos[i].estatus %>
+            <% ind = listadoEventos[i].id %>          
+        <% }} %>
+
+    <form action="/editarE/<%=ind%>" method="POST">
+      <label for="edit">Cambia el Estatus</label>
+      <input
+        type="text"
+        id="edit"
+        name="edit"
+        value="<%=est%>"
+      />
+      <input type="submit" value="Entrar" />
+    </form>
+  </body>
+</html>

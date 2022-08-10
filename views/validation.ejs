@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Validación de eventos</title>
+  </head>
+  <style>
+    body {
+      margin: 0;
+    }
+    main {
+      margin: 25px;
+    }
+    table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+    }
+    td, th {
+      border: 1px solid #dddddd;
+      text-align: center;
+      padding: 8px;
+    }
+    tr:nth-child(even) {
+      background-color: #dddddd;
+    }
+    header {
+      background-color: #f97153;
+      width: 100%;
+      position: relative;
+      top: -22px;
+      color: black;
+      font-family: Verdana, Geneva, Tahoma, sans-serif;
+    }
+    header h1 div {
+      width: 50%;
+    }
+
+    h1 div button {
+      width: 15%;
+    }
+    
+  </style>
+  <body>
+    <header>    
+      <h1> Usuario: <%= user %>         
+        <div>
+          <button type="button" onclick="window.location.reload();">Refresh</button>
+          <form action="/logOut" method="get">
+            <button type="submit">Cerrar sesión</button>
+          </form>
+        </div>
+      </h1>
+      <div>
+        <button onclick="location.href = '/correoU2';">Correo</button>
+      </div>
+    </header>
+    <main>
+      <% if (listadoEventos == "[]") { %>
+        <h2>No hay eventos</h2>
+        <% } else {%>
+          <table>
+            <tr>
+              <th>Indice</th>
+              <th>Estado</th>
+              <th colspan="2"> Acción </th>
+            </tr>
+            <% for (let i=0; i < listadoEventos.length; i++) { %>
+            <tr>
+              <th><%= listadoEventos[i].descripcion %> <% if(user =="User3") { %>
+                | <a href="/editarD/<%=listadoEventos[i].id%> ">Editar</a>
+                <% } %></th>
+              <th><%= listadoEventos[i].estatus %> <% if(user =="User3") { %>
+                | <a href="/editarE/<%=listadoEventos[i].id%>">Editar</a>
+                <% } %></th>
+              <th>
+                <% if (user == "User3") { %>
+                  <% if (["Terminado","Cancelado"].includes(listadoEventos[i].estatus)) { %>
+                    No Modificable
+                    <% } else { %>
+                      <form method="POST" action="/terminar/<%=listadoEventos[i].id%>"><button type="submit">Terminado</button></form>
+                      <% } %>   
+                  <% } else if (["Aceptado","Rechazado","Terminado","Cancelado"].includes(listadoEventos[i].estatus)) {%>
+                    No Modificable
+                    <% } else { %> 
+                    <form method="POST" action="/aceptar/<%=listadoEventos[i].id%>"><button type="submit">Aceptar</button></form>
+                    <% } %>   
+              </th>
+              <th>
+                <% if (user == "User3") { %>
+                  <% if (["Terminado","Cancelado"].includes(listadoEventos[i].estatus)) {  %> 
+                    No modificable
+                    <% } else { %>
+                      <form method="POST" action="/cancelar/<%=listadoEventos[i].id%>"><button type="submit">Cancelado</button></form>
+                      <% } %> 
+
+                  <% } else if (["Aceptado","Rechazado","Terminado","Cancelado"].includes(listadoEventos[i].estatus)) {%>
+                    No Modificable
+                    <% } else { %> 
+                    <form method="POST" action="/rechazar/<%=listadoEventos[i].id%>"><button type="submit">Rechazar</button></form>
+                    <% } %>   
+              </th>
+            </tr>
+            <% } %>  
+          </table>
+          <% } %>
+      </table>
+    </main>
+  </body>
+
+
+</html>
